@@ -26,19 +26,18 @@ function genNewToDoItem() {
 
   const checkBtn = document.createElement('input');
   checkBtn.type = 'button';
-  checkBtn.className = 'todo-container__item__checked-toggle-btn';
+  checkBtn.className =
+    'todo-container__item__checked-toggle-btn checked-toggle-btn';
   li.appendChild(checkBtn);
 
   const textInp = document.createElement('input');
   textInp.type = 'text';
-  textInp.className = 'todo-container__item__content';
-  textInp.id = 'todo-content'
+  textInp.className = 'todo-container__item__content todo-content';
   li.appendChild(textInp);
 
   const deleteBtn = document.createElement('input');
   deleteBtn.type = 'button';
-  deleteBtn.className = 'todo-container__item__delete-btn';
-  li.appendChild(deleteBtn)
+  deleteBtn.className = 'todo-container__item__delete-btn delete-btn';
 
   return li;
 }
