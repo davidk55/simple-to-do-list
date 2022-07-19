@@ -56,38 +56,33 @@ body {
       }
 
       &__item {
-        padding: 0.8rem;
+        padding: 0.8rem 1.5rem 0.8rem 1.5rem;
         width: 90%;
         width: 90%;
         border-radius: 15px;
-        padding-left: 5rem;
         background-color: var(--beige);
         position: relative;
         box-shadow: 2px 2px 5px rgba(0, 3, 8, 0.2);
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        justify-content: flex-start;
 
-        &::before {
-          content: '';
+        &__checked-toggle-btn {
+          background-color: red;
+          padding: 0.9rem;
           background-color: var(--bright-white);
-          padding: 1.08rem;
-          position: absolute;
-          left: 1.5rem;
-          top: 0.83rem;
           border-radius: 5px;
           border: 1px solid var(--dark-brown);
-
         }
 
-        &::after {
-          content: '';
-          position: absolute;
-          color: #E79D93;
-          left: calc(100% - 2.8rem);
-          top: 1.5rem;
-          font-size: 1.5rem;
-          cursor: pointer;
+        &__delete-btn {
           padding: 0.5rem;
           background-image: url('./../assets/delete.svg');
           background-size: contain;
+          background-repeat: no-repeat;
+          margin-left: -2.5rem;
+          cursor: pointer;
         }
 
         &__content {
@@ -118,7 +113,7 @@ body {
   }
 }
 
-.finished.todo-container__item::before {
+.finished > .todo-container__item__checked-toggle-btn {
   background-image: url('./../assets/finished.svg');
   background-size: contain;
 }
@@ -129,7 +124,7 @@ body {
   text-decoration-skip-ink: none;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   #todo-container {
     width: 90%;
     min-width: inherit;
