@@ -16,6 +16,7 @@ body {
     font-family: var(--primary-font);
     margin-top: 10vh;
     flex-flow: column;
+    width: 100%;
 
     h1 {
       font-size: 4rem;
@@ -89,7 +90,6 @@ body {
           background-size: contain;
         }
 
-
         &__content {
           background-color: var(--bright-white);
           padding: 0.5rem 2rem 0.5rem 0.5rem;
@@ -101,7 +101,6 @@ body {
           font-size: 1rem;
           overflow-wrap: break-word;
           word-wrap: normal;
-
         }
       }
     }
@@ -132,6 +131,11 @@ body {
 
 @media (max-width: 600px) {
   #todo-container {
-    max-width: 85%;
+    width: 90%;
+    min-width: inherit;
+
+    #todo-content {
+      font-size: 0.8rem;
+    }
   }
 }
