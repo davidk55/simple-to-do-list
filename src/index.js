@@ -1,6 +1,6 @@
 import './styles/main.scss';
 
-let to_dos
+let to_dos;
 
 (() => {
   loadToDosFromLocalStorage();
@@ -21,21 +21,34 @@ function saveToDosToLocalStorage() {
 }
 
 function genNewToDoItem() {
-  // TODO: create new to-do item using document fragment
+
+  const li = document.createElement('li');
+  li.className = 'todo-container__item';
+
+  const inp = document.createElement('input');
+  inp.type = 'text';
+  inp.className = 'todo-container__item__content';
+
+  li.appendChild(inp);
+  return li;
 }
 
 function addToDoToDOM(item) {
-  // TODO: add the item to the DOM
+  const todoContainer = document.querySelector('#todo-container');
+  todoContainer.insertBefore(item, todoContainer.firstElementChild.nextElementSibling);
 }
 
-function addToDo(id) {
-  const item = document.querySelector(id);
-  addToDoToDOM(item)
+function addToDo(item) {
+  addToDoToDOM(item);
   // TODO: add item to to_dos
 }
 
 // Listener
 // TODO: create new to-do
+document.querySelector('#create-todo-btn').addEventListener('click', () => {
+  let toDoItem = genNewToDoItem();
+  addToDo(toDoItem);
+});
 
 // TODO: delete a to-do
 
