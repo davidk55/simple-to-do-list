@@ -38,6 +38,10 @@ function genNewToDoItem() {
   const deleteBtn = document.createElement('input');
   deleteBtn.type = 'button';
   deleteBtn.className = 'todo-container__item__delete-btn delete-btn';
+  deleteBtn.addEventListener('click', () => {
+    deleteBtn.parentElement.remove();
+  })
+  li.appendChild(deleteBtn);
 
   return li;
 }
@@ -63,6 +67,11 @@ document.querySelector('#create-todo-btn').addEventListener('click', () => {
 });
 
 // TODO: delete a to-do
+document.querySelectorAll('.delete-btn').forEach((e) => {
+  e.addEventListener('click', () => {
+    e.parentElement.remove();
+  });
+});
 
 // TODO: check if any to-do has changed and if so save them to localStorage
 
