@@ -28,6 +28,13 @@ function genNewToDoItem() {
   checkBtn.type = 'button';
   checkBtn.className =
     'todo-container__item__checked-toggle-btn checked-toggle-btn';
+  checkBtn.addEventListener('click', () => {
+    if (!checkBtn.parentElement.classList.contains('finished')) {
+      checkBtn.parentElement.classList.add('finished');
+    } else {
+      checkBtn.parentElement.classList.remove('finished');
+    }
+  });
   li.appendChild(checkBtn);
 
   const textInp = document.createElement('input');
@@ -40,7 +47,7 @@ function genNewToDoItem() {
   deleteBtn.className = 'todo-container__item__delete-btn delete-btn';
   deleteBtn.addEventListener('click', () => {
     deleteBtn.parentElement.remove();
-  })
+  });
   li.appendChild(deleteBtn);
 
   return li;
@@ -76,3 +83,12 @@ document.querySelectorAll('.delete-btn').forEach((e) => {
 // TODO: check if any to-do has changed and if so save them to localStorage
 
 // TODO: toggle check of to-do
+document.querySelectorAll('.checked-toggle-btn').forEach((e) => {
+  e.addEventListener('click', () => {
+    if (!e.parentElement.classList.contains('finished')) {
+      e.parentElement.classList.add('finished');
+    } else {
+      e.parentElement.classList.remove('finished');
+    }
+  });
+});
