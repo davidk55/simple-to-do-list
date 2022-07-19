@@ -67,13 +67,11 @@ function addToDo(item) {
 }
 
 // Listener
-// TODO: create new to-do
 document.querySelector('#create-todo-btn').addEventListener('click', () => {
   let toDoItem = genNewToDoItem();
   addToDo(toDoItem);
 });
 
-// TODO: delete a to-do
 document.querySelectorAll('.delete-btn').forEach((e) => {
   e.addEventListener('click', () => {
     e.parentElement.remove();
@@ -82,7 +80,6 @@ document.querySelectorAll('.delete-btn').forEach((e) => {
 
 // TODO: check if any to-do has changed and if so save them to localStorage
 
-// TODO: toggle check of to-do
 document.querySelectorAll('.checked-toggle-btn').forEach((e) => {
   e.addEventListener('click', () => {
     if (!e.parentElement.classList.contains('finished')) {
