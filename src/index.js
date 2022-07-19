@@ -35,7 +35,10 @@ function genNewToDoItem() {
 
 function addToDoToDOM(item) {
   const todoContainer = document.querySelector('#todo-container');
-  todoContainer.insertBefore(item, todoContainer.firstElementChild.nextElementSibling);
+  todoContainer.insertBefore(
+    item,
+    todoContainer.firstElementChild.nextElementSibling
+  );
 }
 
 function addToDo(item) {
