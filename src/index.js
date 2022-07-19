@@ -21,15 +21,25 @@ function saveToDosToLocalStorage() {
 }
 
 function genNewToDoItem() {
-
   const li = document.createElement('li');
   li.className = 'todo-container__item';
 
-  const inp = document.createElement('input');
-  inp.type = 'text';
-  inp.className = 'todo-container__item__content';
+  const checkBtn = document.createElement('input');
+  checkBtn.type = 'button';
+  checkBtn.className = 'todo-container__item__checked-toggle-btn';
+  li.appendChild(checkBtn);
 
-  li.appendChild(inp);
+  const textInp = document.createElement('input');
+  textInp.type = 'text';
+  textInp.className = 'todo-container__item__content';
+  textInp.id = 'todo-content'
+  li.appendChild(textInp);
+
+  const deleteBtn = document.createElement('input');
+  deleteBtn.type = 'button';
+  deleteBtn.className = 'todo-container__item__delete-btn';
+  li.appendChild(deleteBtn)
+
   return li;
 }
 
