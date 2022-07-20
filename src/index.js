@@ -78,30 +78,7 @@ function insertTodoInDOM(item) {
   saveDOMTodosInLocalStorage();
 }
 
-// function addToDo(item) {
-//   addToDoToDOM(item);
-//   // TODO: add item to to_dos
-// }
-
 // Listener
 document.querySelector('#create-todo-btn').addEventListener('click', () => {
   insertTodoInDOM(genTodo());
-});
-
-document.querySelectorAll('.delete-btn').forEach((e) => {
-  e.addEventListener('click', () => {
-    e.parentElement.remove();
-  });
-});
-
-// TODO: check if any to-do has changed and if so save them to localStorage
-
-document.querySelectorAll('.checked-toggle-btn').forEach((e) => {
-  e.addEventListener('click', () => {
-    if (!e.parentElement.classList.contains('finished')) {
-      e.parentElement.classList.add('finished');
-    } else {
-      e.parentElement.classList.remove('finished');
-    }
-  });
 });
