@@ -1,7 +1,6 @@
 import './styles/main.scss';
 
 (() => {
-  cleanTodoContainer();
   if (todosExistInLocalStorage()) {
     insertLocalStorageTodosInDOM();
   } else {
@@ -9,15 +8,15 @@ import './styles/main.scss';
   }
 })();
 
-function cleanTodoContainer() {
-  // TODO: remove all todos
-}
 function todosExistInLocalStorage() {
-  // TODO: check if todos exist in local storage
+  return true;
 }
 
 function insertLocalStorageTodosInDOM() {
-  // TODO: insert the local storage todos into the DOM
+  const todos = JSON.parse(localStorage.getItem('todos'));
+  todos.slice().reverse().forEach((e) => {
+    insertTodoInDOM(genTodo(e.text, e.isFinished))
+  })
 }
 
 function saveDOMTodosInLocalStorage() {
@@ -39,7 +38,7 @@ function genTodo(text = '', isFinished = false) {
   checkBtn.type = 'button';
   checkBtn.className =
     'todo-container__item__checked-toggle-btn checked-toggle-btn';
-  if (isFinished) checkBtn.classList.add('finished');
+  if (isFinished) li.classList.add('finished');
   checkBtn.addEventListener('click', () => {
     if (!checkBtn.parentElement.classList.contains('finished')) {
       checkBtn.parentElement.classList.add('finished');
