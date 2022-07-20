@@ -6,7 +6,6 @@ import './styles/main.scss';
     insertLocalStorageTodosInDOM();
   } else {
     insertTodoInDOM(genTodo());
-    saveDOMTodosInLocalStorage();
   }
 })();
 
@@ -22,7 +21,14 @@ function insertLocalStorageTodosInDOM() {
 }
 
 function saveDOMTodosInLocalStorage() {
-  // TODO: save the DOM todos in the local storage
+  let children = document.querySelector('#todo-container').children;
+  let childrenForLocalStorage = [];
+  for (let i = 1; i < children.length; i++) {
+    let isFinished = children[i].classList.contains('finished');
+    let text = children[i].firstChild.nextSibling.value;
+    childrenForLocalStorage.push({ isFinished: isFinished, text: text });
+  }
+  localStorage.setItem('todos', JSON.stringify(childrenForLocalStorage));
 }
 
 function genTodo(text = '', isFinished = false) {
@@ -40,6 +46,7 @@ function genTodo(text = '', isFinished = false) {
     } else {
       checkBtn.parentElement.classList.remove('finished');
     }
+    saveDOMTodosInLocalStorage();
   });
   li.appendChild(checkBtn);
 
@@ -47,6 +54,9 @@ function genTodo(text = '', isFinished = false) {
   textInp.type = 'text';
   textInp.className = 'todo-container__item__content todo-content';
   textInp.value = text;
+  textInp.addEventListener('change', () => {
+    saveDOMTodosInLocalStorage();
+  });
   li.appendChild(textInp);
 
   const deleteBtn = document.createElement('input');
@@ -54,6 +64,7 @@ function genTodo(text = '', isFinished = false) {
   deleteBtn.className = 'todo-container__item__delete-btn delete-btn';
   deleteBtn.addEventListener('click', () => {
     deleteBtn.parentElement.remove();
+    saveDOMTodosInLocalStorage();
   });
   li.appendChild(deleteBtn);
 
@@ -64,6 +75,7 @@ function insertTodoInDOM(item) {
   const todoContainer = document.querySelector('#todo-container');
   const secondSibling = todoContainer.firstElementChild.nextElementSibling;
   todoContainer.insertBefore(item, secondSibling);
+  saveDOMTodosInLocalStorage();
 }
 
 // function addToDo(item) {
