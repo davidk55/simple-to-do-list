@@ -9,7 +9,8 @@ import './styles/main.scss';
 })();
 
 function todosExistInLocalStorage() {
-  return true;
+  if(localStorage.getItem('todos')) return true;
+  return false;
 }
 
 function insertLocalStorageTodosInDOM() {
