@@ -1,26 +1,31 @@
 import './styles/main.scss';
 
-let to_dos;
-
 (() => {
-  loadToDosFromLocalStorage();
-  loadToDosIntoTheDOM();
-  // TODO: check if there are no to-do`s and if so add a empty to-do
+  cleanTodoContainer();
+  if (todosExistInLocalStorage()) {
+    insertLocalStorageTodosInDOM();
+  } else {
+    insertTodoInDOM(genTodo());
+    saveDOMTodosInLocalStorage();
+  }
 })();
 
-function loadToDosFromLocalStorage() {
-  // TODO: load the to-do`s from local storage in to_dos using JSON.parse()
+function cleanTodoContainer() {
+  // TODO: remove all todos
+}
+function todosExistInLocalStorage() {
+  // TODO: check if todos exist in local storage
 }
 
-function loadToDosIntoTheDOM() {
-  // TODO: load to-do`s from to_dos into the dom
+function insertLocalStorageTodosInDOM() {
+  // TODO: insert the local storage todos into the DOM
 }
 
-function saveToDosToLocalStorage() {
-  // TODO: save the to_dos variable to local storage with JSON.stringify()
+function saveDOMTodosInLocalStorage() {
+  // TODO: save the DOM todos in the local storage
 }
 
-function genNewToDoItem() {
+function genTodo(text = '', isFinished = false) {
   const li = document.createElement('li');
   li.className = 'todo-container__item';
 
@@ -28,6 +33,7 @@ function genNewToDoItem() {
   checkBtn.type = 'button';
   checkBtn.className =
     'todo-container__item__checked-toggle-btn checked-toggle-btn';
+  if (isFinished) checkBtn.classList.add('finished');
   checkBtn.addEventListener('click', () => {
     if (!checkBtn.parentElement.classList.contains('finished')) {
       checkBtn.parentElement.classList.add('finished');
@@ -40,6 +46,7 @@ function genNewToDoItem() {
   const textInp = document.createElement('input');
   textInp.type = 'text';
   textInp.className = 'todo-container__item__content todo-content';
+  textInp.value = text;
   li.appendChild(textInp);
 
   const deleteBtn = document.createElement('input');
@@ -53,23 +60,20 @@ function genNewToDoItem() {
   return li;
 }
 
-function addToDoToDOM(item) {
+function insertTodoInDOM(item) {
   const todoContainer = document.querySelector('#todo-container');
-  todoContainer.insertBefore(
-    item,
-    todoContainer.firstElementChild.nextElementSibling
-  );
+  const secondSibling = todoContainer.firstElementChild.nextElementSibling;
+  todoContainer.insertBefore(item, secondSibling);
 }
 
-function addToDo(item) {
-  addToDoToDOM(item);
-  // TODO: add item to to_dos
-}
+// function addToDo(item) {
+//   addToDoToDOM(item);
+//   // TODO: add item to to_dos
+// }
 
 // Listener
 document.querySelector('#create-todo-btn').addEventListener('click', () => {
-  let toDoItem = genNewToDoItem();
-  addToDo(toDoItem);
+  insertTodoInDOM(genTodo());
 });
 
 document.querySelectorAll('.delete-btn').forEach((e) => {
