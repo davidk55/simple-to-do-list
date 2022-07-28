@@ -44,8 +44,6 @@ function getClosestBottomTodo(todoContainer, y) {
       const rect = curTodo.getBoundingClientRect();
       const offset = rect.top + rect.height / 2 - y;
       if (offset > 0 && offset < closest.offset) {
-        console.log(offset);
-        console.log(curTodo);
         return { offset: offset, todo: curTodo };
       } else return closest;
     },
@@ -54,15 +52,18 @@ function getClosestBottomTodo(todoContainer, y) {
 }
 
 function todosExistInLocalStorage() {
-  if(localStorage.getItem('todos')) return true;
+  if (localStorage.getItem('todos')) return true;
   return false;
 }
 
 function insertLocalStorageTodosInDOM() {
   const todos = JSON.parse(localStorage.getItem('todos'));
-  todos.slice().reverse().forEach((e) => {
-    insertTodoInDOM(genTodo(e.text, e.isFinished))
-  })
+  todos
+    .slice()
+    .reverse()
+    .forEach((e) => {
+      insertTodoInDOM(genTodo(e.text, e.isFinished));
+    });
 }
 
 function saveDOMTodosInLocalStorage() {

@@ -22,7 +22,7 @@ module.exports = {
         use: [
           {
             loader: MiniCssExtractPlugin.loader,
-            options: { publicPath: "" }
+            options: { publicPath: '' },
           },
           'css-loader',
           'postcss-loader',
@@ -48,7 +48,7 @@ module.exports = {
       title: 'Simple To-Do List',
       filename: './index.html',
       template: './src/template.html',
-      favicon: './src/assets/favicon.svg'
+      favicon: './src/assets/favicon.svg',
     }),
     new MiniCssExtractPlugin(),
   ],
