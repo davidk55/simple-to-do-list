@@ -90,11 +90,7 @@ function genTodo(text = '', isFinished = false) {
     'todo-container__item__checked-toggle-btn checked-toggle-btn';
   if (isFinished) li.classList.add('finished');
   checkBtn.addEventListener('click', () => {
-    if (!checkBtn.parentElement.classList.contains('finished')) {
-      checkBtn.parentElement.classList.add('finished');
-    } else {
-      checkBtn.parentElement.classList.remove('finished');
-    }
+    checkBtn.parentElement.classList.toggle('finished');
     saveDOMTodosInLocalStorage();
   });
   li.appendChild(checkBtn);
