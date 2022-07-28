@@ -124,6 +124,10 @@ body {
   text-decoration-skip-ink: none;
 }
 
+.todo-container__item.dragging {
+  opacity: 0.6;
+}
+
 @media (max-width: 750px) {
   #todo-container {
     width: 90%;

@@ -6,7 +6,52 @@ import './styles/main.scss';
   } else {
     insertTodoInDOM(genTodo());
   }
+  addDragEventLister();
 })();
+
+function addDragEventLister() {
+  const todoContainer = document.querySelector('#todo-container');
+
+  todoContainer.addEventListener('dragstart', (e) => {
+    e.target.classList.add('dragging');
+  });
+
+  todoContainer.addEventListener('dragend', (e) => {
+    e.target.classList.remove('dragging');
+  });
+
+  todoContainer.addEventListener('dragover', (e) => {
+    e.preventDefault();
+
+    const dragging = document.querySelector('.dragging');
+    if (!dragging) return;
+
+    const closestTodo = getClosestBottomTodo(todoContainer, e.clientY);
+
+    if (closestTodo == null) todoContainer.appendChild(dragging);
+    else todoContainer.insertBefore(dragging, closestTodo);
+    saveDOMTodosInLocalStorage();
+  });
+}
+
+function getClosestBottomTodo(todoContainer, y) {
+  const draggableTodos = [
+    ...todoContainer.querySelectorAll('.todo-container__item:not(.dragging)'),
+  ];
+
+  return draggableTodos.reduce(
+    (closest, curTodo) => {
+      const rect = curTodo.getBoundingClientRect();
+      const offset = rect.top + rect.height / 2 - y;
+      if (offset > 0 && offset < closest.offset) {
+        console.log(offset);
+        console.log(curTodo);
+        return { offset: offset, todo: curTodo };
+      } else return closest;
+    },
+    { offset: Number.MAX_SAFE_INTEGER }
+  ).todo;
+}
 
 function todosExistInLocalStorage() {
   if(localStorage.getItem('todos')) return true;
@@ -34,6 +79,9 @@ function saveDOMTodosInLocalStorage() {
 function genTodo(text = '', isFinished = false) {
   const li = document.createElement('li');
   li.className = 'todo-container__item';
+
+  li.setAttribute('draggable', 'true');
+  li.setAttribute('drop', 'true');
 
   const checkBtn = document.createElement('input');
   checkBtn.type = 'button';
