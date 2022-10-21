@@ -74,6 +74,7 @@ body {
           background-color: var(--bright-white);
           border-radius: 5px;
           border: 1px solid var(--dark-brown);
+          font-size: 0;
         }
 
         &__delete-btn {
@@ -83,6 +84,7 @@ body {
           background-repeat: no-repeat;
           margin-left: -2.5rem;
           cursor: pointer;
+          font-size: 0;
         }
 
         &__content {
@@ -116,6 +118,7 @@ body {
 .finished > .todo-container__item__checked-toggle-btn {
   background-image: url('./../assets/finished.svg');
   background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .finished.todo-container__item > .todo-container__item__content {
